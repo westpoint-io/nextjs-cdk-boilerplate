@@ -12,10 +12,11 @@ export default class NextJSStack extends Stack {
 
     const stackName =
       process.env.ENVIRONMENT === 'development'
-        ? 'NextJS-<stack_name>-App-DEV'
-        : 'NextJS-<stack_name>-App';
+        ? 'NextJS-Testing-App-DEV'
+        : 'NextJS-Testing-App';
 
     new NextJSLambdaEdge(this, 'NextJS-App', {
+      stackName,
       serverlessBuildOutDir: './next-build',
       runtime: Runtime.NODEJS_12_X,
       memory: 1024,
@@ -24,16 +25,16 @@ export default class NextJSStack extends Stack {
       cachePolicyName: {
         imageCache:
           process.env.ENVIRONMENT === 'development'
-            ? 'NextJS-<stack_name>-ImageCache-DEV'
-            : 'NextJS-<stack_name>-ImageCache',
+            ? 'NextJS-Testing-ImageCache-DEV'
+            : 'NextJS-Testing-ImageCache',
         lambdaCache:
           process.env.ENVIRONMENT === 'development'
-            ? 'NextJS-<stack_name>-LambdaCache-DEV'
-            : 'NextJS-<stack_name>-LambdaCache',
+            ? 'NextJS-Testing-LambdaCache-DEV'
+            : 'NextJS-Testing-LambdaCache',
         staticsCache:
           process.env.ENVIRONMENT === 'development'
-            ? 'NextJS-<stack_name>-StaticsCache-DEV'
-            : 'NextJS-<stack_name>-StaticsCache',
+            ? 'NextJS-Testing-StaticsCache-DEV'
+            : 'NextJS-Testing-StaticsCache',
       },
     });
   }
